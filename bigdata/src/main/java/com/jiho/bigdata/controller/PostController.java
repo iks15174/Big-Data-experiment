@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +24,10 @@ public class PostController {
     @GetMapping("/v1/post")
     public ResponseEntity<List<PostListRespDto>> getAllPost() {
         return ResponseEntity.ok().body(postService.getAllList());
+    }
+
+    @PostMapping("/v1/post")
+    public ResponseEntity<Integer> createByNum(@RequestBody int num) {
+        return ResponseEntity.ok().body(postService.createByNum(num));
     }
 }
