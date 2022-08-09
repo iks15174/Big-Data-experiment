@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jiho.bigdata.dto.post.PostListRespDto;
+import com.jiho.bigdata.dto.post.PostSaveDto;
 import com.jiho.bigdata.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,11 @@ public class PostController {
     }
 
     @PostMapping("/v1/post")
+    public ResponseEntity<Long> createPost(PostSaveDto requestDto) {
+        return ResponseEntity.ok().body(postService.createPost(requestDto));
+    }
+
+    @PostMapping("/v1/post/number")
     public ResponseEntity<Integer> createByNum(@RequestBody int num) {
         return ResponseEntity.ok().body(postService.createByNum(num));
     }

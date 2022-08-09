@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.jiho.bigdata.domain.post.Post;
 import com.jiho.bigdata.domain.post.PostRepository;
 import com.jiho.bigdata.dto.post.PostListRespDto;
+import com.jiho.bigdata.dto.post.PostSaveDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,11 @@ public class PostService {
     @Transactional
     public List<PostListRespDto> getAllList() {
         return postRepository.findAll().stream().map(en -> new PostListRespDto(en)).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Long createPost(PostSaveDto requestDto) {
+        return postRepository.save(requestDto.toEntity()).getId();
     }
 
     @Transactional
