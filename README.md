@@ -1,2 +1,10 @@
-# Big-Data-experiment
+# 저장소 설명
 대규모데이터를 지탱하는 기술"을 읽으며 배운 것을 실험해보는 저장소이다.
+
+# 목차
+1. [innodb buffer pool 크기에 따른 sql 성능 테스트](#1-innodb-buffer-pool-크기에-따른-sql-성능-테스트)
+2. 데이터베이스 캐싱을 이용하여 백엔드 성능 높이기
+3. nginx를 활용한 로드밸런싱을 통해 백엔드 성능 높이기
+4. 결제시스템 구축해보기
+
+# 1. innodb buffer pool 크기에 따른 sql 성능 테스트
