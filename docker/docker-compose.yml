@@ -1,10 +1,11 @@
 version: "3"
 services:
   db-master:
+    container_name: master
     build:
       context: ./masterdb
       dockerfile: Dockerfile
-    # restart: always
+    restart: always
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_USER: 'user'
@@ -14,12 +15,14 @@ services:
       - '3308:3306'
     # Where our data will be persisted
     volumes:
+      - ./share:/share/
       - my-db-master:/var/lib/mysql
       - my-db-master:/var/lib/mysql-files
     networks:
       - net-mysql
 
   db-slave:
+    container_name: slave1
     build:
       context: ./slavedb
       dockerfile: Dockerfile
