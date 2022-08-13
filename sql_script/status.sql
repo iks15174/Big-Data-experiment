@@ -1,4 +1,4 @@
-SET GLOBAL innodb_buffer_pool_size=8388608;
+SET GLOBAL innodb_buffer_pool_size=1073741824;
 SET GLOBAL innodb_buffer_pool_chunk_size=536870912;
 show engine innodb status;
 
