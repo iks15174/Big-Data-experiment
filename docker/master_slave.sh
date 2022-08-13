@@ -22,7 +22,17 @@ echo "${FILE} ${POSITION}" > ./share/masterdb_status.txt
 echo "Dump Master DB"
 docker exec master mysqldump -u root -ppassword --all-databases > ./share/cur.sql
 
-# slave들에 show database의 결과와 dumpsql을 전달하고 sync 작업을 수행한다.
+echo "Stop Slave"
+docker exec slave1 mysql -u root -ppassword -e "stop slave;"
+
+echo "Dump Master DB to Slave DB"
+docker exec slave1 mysql -u root -ppassword < ./share/cur.sql
+
+echo "Synchronize Slave DB to Master DB"
+docker exec slave1 mysql -u root -ppassword -e "CHANGE MASTER TO MASTER_HOST='master', MASTER_USER='repl', MASTER_PASSWORD='1234', MASTER_LOG_FILE='${FILE}', MASTER_LOG_POS=${POSITION};"
+
+echo "Start Slave"
+docker exec slave1 mysql -u root -ppassword -e "start slave;"
 
 echo "Unlock Master DB"
 docker exec master mysql -u root -ppassword -e "UNLOCK TABLES;"
