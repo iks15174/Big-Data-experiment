@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.jiho.bigdata.domain.post.Post;
 
-public interface PostRepository extends JpaRepository<Post, Long>{
+public interface PostFSRepository extends JpaRepository<Post, Long>{
     
 }
